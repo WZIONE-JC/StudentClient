@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">StudentClient</string>
+    <string name="app_name">易课堂</string>
+    <string name="str_account">请输入用户名</string>
+    <string name="str_password">请输入密码</string>
+    <string name="login_in">登  录</string>
+    <string name="number_and_letter">
+        0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.
+    </string>
 </resources>
