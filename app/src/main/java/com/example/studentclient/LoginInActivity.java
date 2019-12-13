@@ -33,6 +33,9 @@ public class LoginInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (!account.getText().toString().trim().equals("")){
                     if (!password.getText().toString().trim().equals("")){
+
+                        //登录判断密码是否相同
+
                         Intent intent = new Intent(LoginInActivity.this, MainActivity.class);
                         startActivity(intent);
                     }else {

@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ForgetPassword"></activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".SignUpActivity" />
+        <activity android:name=".SignUpActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <activity
             android:name=".LoginInActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">

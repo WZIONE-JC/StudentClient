@@ -1,14 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    android:orientation="vertical">
 
-    <TextView
+    <ImageView
+        android:id="@+id/ic_back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_back" />
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="注册"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="30dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_launcher"/>
+        <TextView
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_weight="3"
+            android:text="@string/app_name"
+            android:textColor="@color/color_1296db"
+            android:textSize="40sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
+
+<!--        <ImageView-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginLeft="40dp"-->
+<!--            android:layout_marginRight="2dp"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:src="@drawable/ic_account"/>-->
+        <EditText
+            android:id="@+id/text_sign_up_account"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:maxLines="1"
+            android:digits="@string/number_and_letter"
+            android:hint="请输入账号"
+            android:textColor="@color/deep_gray"
+            android:textColorHint="#A9A9A9"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:theme="@style/EditTextStyle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+<!--        <ImageView-->
+<!--            android:layout_marginLeft="40dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginRight="2dp"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:src="@drawable/ic_password"/>-->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:maxLines="1"
+            android:inputType="textPassword"
+            android:id="@+id/text_sign_up_password"
+            android:hint="@string/str_password"
+            android:textColor="@color/deep_gray"
+            android:textColorHint="#A9A9A9"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:theme="@style/EditTextStyle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+<!--        <ImageView-->
+<!--            android:layout_marginLeft="40dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginRight="2dp"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:src="@drawable/ic_password"/>-->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:maxLines="1"
+            android:inputType="textPassword"
+            android:id="@+id/text_sign_up_password_again"
+            android:hint="再次输入密码"
+            android:textColor="@color/deep_gray"
+            android:textColorHint="#A9A9A9"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:theme="@style/EditTextStyle"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="50dp"
+        android:text="注  册"
+        android:id="@+id/button_sign_up_ok"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:background="@drawable/button"/>
+
+</LinearLayout>

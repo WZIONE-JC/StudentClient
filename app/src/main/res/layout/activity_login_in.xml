@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_weight="2"
             android:layout_height="80dp"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@drawable/ic_launcher"/>
         <TextView
             android:gravity="center"
             android:layout_width="0dp"
@@ -28,34 +28,6 @@
             android:textColor="@color/color_1296db"
             android:textSize="40sp"/>
     </LinearLayout>
-
-<!--    <RelativeLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginLeft="50dp"-->
-<!--        android:layout_marginTop="70dp"-->
-<!--        android:layout_marginRight="50dp">-->
-
-<!--        <ImageView-->
-<!--            android:layout_width="80dp"-->
-<!--            android:layout_height="80dp"-->
-<!--            android:layout_alignParentStart="true"-->
-<!--            android:layout_alignParentLeft="true"-->
-<!--            android:layout_marginStart="20dp"-->
-<!--            android:layout_marginLeft="20dp"-->
-<!--            android:src="@drawable/ic_launcher" />-->
-
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentTop="true"-->
-<!--            android:layout_alignParentRight="true"-->
-<!--            android:layout_marginTop="13dp"-->
-<!--            android:layout_marginRight="20dp"-->
-<!--            android:text="@string/app_name"-->
-<!--            android:textColor="@color/color_1296db"-->
-<!--            android:textSize="40sp" />-->
-<!--    </RelativeLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -68,7 +40,7 @@
 
         <ImageView
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginRight="2dp"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -77,11 +49,11 @@
             android:id="@+id/text_account"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="50dp"
             android:maxLines="1"
             android:digits="@string/number_and_letter"
             android:hint="@string/str_account"
-            android:textColor="@color/gray"
+            android:textColor="@color/deep_gray"
             android:textColorHint="#A9A9A9"
             android:textCursorDrawable="@drawable/cursor_color"
             android:theme="@style/EditTextStyle"/>
@@ -97,7 +69,7 @@
         android:focusableInTouchMode="true">
 
         <ImageView
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="2dp"
             android:layout_width="30dp"
@@ -106,12 +78,12 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginRight="50dp"
             android:maxLines="1"
             android:inputType="textPassword"
             android:id="@+id/text_password"
             android:hint="@string/str_password"
-            android:textColor="@color/gray"
+            android:textColor="@color/deep_gray"
             android:textColorHint="#A9A9A9"
             android:textCursorDrawable="@drawable/cursor_color"
             android:theme="@style/EditTextStyle"/>
@@ -121,8 +93,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
         android:layout_marginTop="50dp"
         android:text="登  录"
         android:id="@+id/button_login_in"
@@ -133,9 +105,9 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="30dp">
+        android:layout_marginRight="50dp">
 
         <Button
             android:layout_width="wrap_content"
