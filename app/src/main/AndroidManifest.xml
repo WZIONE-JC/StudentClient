@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ForgetPassword" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:label=""/>
         <activity
             android:name=".SignUpActivity" />
         <activity
