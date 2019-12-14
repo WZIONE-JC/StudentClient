@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Looper;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONObject;
 
 import java.net.URL;
+import java.security.MessageDigest;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -30,7 +32,7 @@ public class LoginInActivity extends AppCompatActivity {
     private EditText password;
     private String username;
     private String pass;
-    private String path = "http://122.51.186.91:8081/user/login";
+    private String path = "http://122.51.186.91:8081/student/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,6 @@ public class LoginInActivity extends AppCompatActivity {
                         username = account.getText().toString().trim();
                         pass = password.getText().toString().trim();
                         sendAccountAndPassword();
-
                     }else {
                         Toast.makeText(LoginInActivity.this,"请输入密码！",Toast.LENGTH_SHORT).show();
                     }
@@ -92,7 +93,7 @@ public class LoginInActivity extends AppCompatActivity {
                     OkHttpClient client = new OkHttpClient();
                     RequestBody requestBody = new FormBody.Builder()
                             .add("user_id",username)
-                            .add("password",pass)
+                            .add("password",MD5(pass))
                             .build();
                     okhttp3.Request request = new okhttp3.Request.Builder()
                             .url(new URL(path))
@@ -106,7 +107,8 @@ public class LoginInActivity extends AppCompatActivity {
 //                    Log.d("da",result.toString());
                     if (result.has("state")){
                         int state = result.getInt("state");
-//                        Log.d("state",String.valueOf(state));
+                        Log.d("登录return",String.valueOf(state));
+//                        Log.d("Login",String.valueOf(state));
                         if (state == 0){
                             editor.putBoolean("isLogin",true);
                             editor.apply();
@@ -130,6 +132,27 @@ public class LoginInActivity extends AppCompatActivity {
                 }
             }
         }).start();
+    }
+
+    /**
+     * MD5加密
+     * @param psw
+     * @return
+     */
+    private String MD5(String psw){
+        String result = "";
+        try {
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            digest.update(psw.getBytes("UTF8"));
+            byte s[] = digest.digest();
+            for (int i = 0; i < s.length; i++) {
+                result+=Integer.toHexString((0x000000ff & s[i]) | 0xffffff00).substring(6);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+
     }
 
 }

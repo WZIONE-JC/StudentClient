@@ -15,6 +15,8 @@ import android.widget.Toast;
 import org.json.JSONObject;
 
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -30,7 +32,7 @@ public class SignUpActivity extends AppCompatActivity {
     private String userId;
     private String userName;
     private String pass;
-    private String path = "http://122.51.186.91:8081/user/register";
+    private String path = "http://122.51.186.91:8081//student/register";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +96,7 @@ public class SignUpActivity extends AppCompatActivity {
                     OkHttpClient client = new OkHttpClient();
                     RequestBody requestBody = new FormBody.Builder()
                             .add("user_id",userId)
-                            .add("password",pass)
+                            .add("password",MD5(pass))
                             .add("user_name",userName)
                             .build();
                     okhttp3.Request request = new okhttp3.Request.Builder()
@@ -109,7 +111,7 @@ public class SignUpActivity extends AppCompatActivity {
 //                    Log.d("da",result.toString());
                     if (result.has("state")){
                         int state = result.getInt("state");
-                        Log.d("sign",result.toString());
+                        Log.d("注册return",result.toString());
 //                        Log.d("state",String.valueOf(state));
                         if (state == 0){
                             Intent intent = new Intent(SignUpActivity.this, LoginInActivity.class);
@@ -117,10 +119,11 @@ public class SignUpActivity extends AppCompatActivity {
                             finish();
                         }else {
                             Looper.prepare();
-                            Toast.makeText(SignUpActivity.this,"密码错误！",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this,"注册失败！",Toast.LENGTH_SHORT).show();
                             Looper.loop();
                         }
                     }else {
+                        Log.d("sign",result.toString());
                         Looper.prepare();
                         Toast.makeText(SignUpActivity.this,"注册失败！",Toast.LENGTH_SHORT).show();
                         Looper.loop();
@@ -133,4 +136,26 @@ public class SignUpActivity extends AppCompatActivity {
             }
         }).start();
     }
+
+    /**
+     * MD5加密
+     * @param psw
+     * @return
+     */
+    private String MD5(String psw){
+        String result = "";
+        try {
+            MessageDigest digest = MessageDigest.getInstance("MD5");
+            digest.update(psw.getBytes("UTF8"));
+            byte s[] = digest.digest();
+            for (int i = 0; i < s.length; i++) {
+                result+=Integer.toHexString((0x000000ff & s[i]) | 0xffffff00).substring(6);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+
+    }
+
 }
