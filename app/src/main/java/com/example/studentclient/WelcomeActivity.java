@@ -22,6 +22,7 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void run() {
                 boolean isLogin = preferences.getBoolean("isLogin",false);
+//                boolean isLogin = true;
                 if (!isLogin){
                     //go to login activity
                     startActivity(new Intent(WelcomeActivity.this,LoginInActivity.class));
