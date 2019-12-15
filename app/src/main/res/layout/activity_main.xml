@@ -23,23 +23,30 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <FrameLayout
+    <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
-    </FrameLayout>
+        android:layout_weight="1"
+        android:id="@+id/main_viewpager">
+
+
+
+    </androidx.viewpager.widget.ViewPager>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/colorPrimaryDark"/>
+        android:background="#e6e6e6"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/menu"
         android:layout_gravity="bottom"
-        app:menu="@menu/bottom_menu"/>
+        app:itemIconTint="@drawable/icon_selector"
+        app:itemTextColor="@drawable/icon_selector"
+        app:menu="@menu/bottom_menu"
+        android:id="@+id/bottom_menu"/>
 
 
 </LinearLayout>

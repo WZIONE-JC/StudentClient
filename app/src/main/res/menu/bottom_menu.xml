@@ -13,7 +13,7 @@
         android:icon="@drawable/ic_talk_area" />
 
     <item
-        android:id="@+id/pearsonl_info"
+        android:id="@+id/personal_info"
         android:title="@string/personal_info"
         android:icon="@drawable/ic_peasonal_info"/>
 
