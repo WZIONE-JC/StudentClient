@@ -12,6 +12,7 @@ import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private BottomNavigationView navigationView;
     private ViewPager viewPager;
+    private TextView topText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView = (BottomNavigationView)findViewById(R.id.bottom_menu);
         viewPager = (ViewPager)findViewById(R.id.main_viewpager);
+        topText = (TextView) findViewById(R.id.top_text);
 
         BottomAdapter adapter = new BottomAdapter(getSupportFragmentManager());
         adapter.addFragment(new HomeFragment());
@@ -39,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new PersonalFragment());
         viewPager.setAdapter(adapter);
 
+        /**
+         * TODO change view
+         */
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -59,7 +65,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
+        /**
+         * TODO do something when page changed
+         */
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -69,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int position) {
                 navigationView.getMenu().getItem(position).setChecked(true);
+                topText.setText(navigationView.getMenu().getItem(position).getTitle());
             }
 
             @Override
