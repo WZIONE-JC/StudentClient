@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //to to my class activity
-                startActivity(new Intent(getActivity(),LoginInActivity.class));
+                startActivity(new Intent(getActivity(),MyClass.class));
             }
         });
 
@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //go to join class activity
-//                startActivity(new Intent(getActivity(),LoginInActivity.class));
+                startActivity(new Intent(getActivity(),JoinClass.class));
             }
         });
 

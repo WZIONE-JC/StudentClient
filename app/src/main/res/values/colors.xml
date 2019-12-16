@@ -8,4 +8,9 @@
     <color name="gray">#ABB2B9</color>
     <color name="deep_gray">#566573</color>
     <color name="menu">#f5f5f5</color>
+
+    <!-- 个人信息分割线颜色 -->
+    <color name="user_border">#ccc</color>
+    <!-- 个人信息背景颜色 -->
+    <color name="user_item_back">#F0F8FF</color>
 </resources>

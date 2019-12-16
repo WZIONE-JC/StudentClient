@@ -28,6 +28,19 @@
             android:name=".LoginInActivity"
             android:launchMode="singleTask">
         </activity>
+        <activity android:name=".ModifyPersonal"></activity>
+        <activity android:name=".SelectPicture"
+            android:theme="@style/DialogStyleBottom">
+
+        </activity>
+        <activity
+            android:name=".JoinClass"
+            android:label="@string/title_activity_join_class"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".MyClass"
+            android:label="@string/title_activity_my_class"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
