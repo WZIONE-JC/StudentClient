@@ -147,18 +147,16 @@
 
     <LinearLayout
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <LinearLayout
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:id="@+id/my_classroom"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="145dp"
+            android:layout_height="145dp"
             android:orientation="vertical"
             android:background="@drawable/circle_background">
             <ImageView
@@ -173,7 +171,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="20dp"
                 android:text="我的课堂"
                 android:textSize="18sp"
@@ -183,10 +181,9 @@
 
         <LinearLayout
             android:id="@+id/join_classroom"
-            android:layout_margin="10dp"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:layout_width="145dp"
+            android:layout_height="145dp"
             android:orientation="vertical"
             android:background="@drawable/circle_background">
             <ImageView
@@ -203,7 +200,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:textColor="@color/color_1296db"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginBottom="20dp"
                 android:text="加入课堂"
                 android:textSize="20sp" />
