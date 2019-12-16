@@ -116,6 +116,9 @@ public class SignUpActivity extends AppCompatActivity {
                         if (state == 0){
                             Intent intent = new Intent(SignUpActivity.this, LoginInActivity.class);
                             startActivity(intent);
+                            Looper.prepare();
+                            Toast.makeText(SignUpActivity.this,"注册成功！",Toast.LENGTH_SHORT).show();
+                            Looper.loop();
                             finish();
                         }else {
                             Looper.prepare();
@@ -125,7 +128,7 @@ public class SignUpActivity extends AppCompatActivity {
                     }else {
                         Log.d("sign",result.toString());
                         Looper.prepare();
-                        Toast.makeText(SignUpActivity.this,"注册失败！",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this,"注册失败，账号已被使用！",Toast.LENGTH_SHORT).show();
                         Looper.loop();
                     }
 

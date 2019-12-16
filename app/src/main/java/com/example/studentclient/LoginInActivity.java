@@ -103,11 +103,10 @@ public class LoginInActivity extends AppCompatActivity {
                     String responseData = response.body().string();
 
                     JSONObject result = new JSONObject(responseData);
-                    int state = result.getInt("state");
-                    Log.d("登录return",String.valueOf(state));
-//                    Log.d("da",result.toString());
-                    if (state != -2){
 
+                    Log.d("da",result.toString());
+                    if (result.has("state")){
+                        int state = result.getInt("state");
 //                        Log.d("Login",String.valueOf(state));
                         if (state == 0){
                             editor.putBoolean("isLogin",true);
