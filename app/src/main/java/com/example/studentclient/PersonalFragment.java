@@ -45,7 +45,7 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
                 break;
             case R.id.btn_quit://退出登陆
                 getActivity().finish();
-                startActivity(new Intent(getActivity(), LoginInActivity.class));
+                startActivity(new Intent(getActivity(), LogInActivity.class));
                 break;
             case R.id.preson_data:
                 startActivity(new Intent(getActivity(), ModifyPersonal.class));

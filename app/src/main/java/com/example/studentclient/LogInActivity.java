@@ -22,7 +22,7 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.RequestBody;
 
-public class LoginInActivity extends AppCompatActivity {
+public class LogInActivity extends AppCompatActivity {
     private SharedPreferences.Editor editor;
     private SharedPreferences preferences;
     private Button loginIn;
@@ -37,7 +37,7 @@ public class LoginInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_in);
+        setContentView(R.layout.activity_login);
 
         loginIn = (Button)findViewById(R.id.button_login_in);
         forgetPsw = (Button)findViewById(R.id.button_forget_psw);
@@ -56,10 +56,10 @@ public class LoginInActivity extends AppCompatActivity {
                         pass = password.getText().toString().trim();
                         sendAccountAndPassword();
                     }else {
-                        Toast.makeText(LoginInActivity.this,"请输入密码！",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LogInActivity.this,"请输入密码！",Toast.LENGTH_SHORT).show();
                     }
                 }else {
-                    Toast.makeText(LoginInActivity.this,"请输入用户名！",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LogInActivity.this,"请输入用户名！",Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -70,7 +70,7 @@ public class LoginInActivity extends AppCompatActivity {
         forgetPsw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginInActivity.this, ForgetPassword.class);
+                Intent intent = new Intent(LogInActivity.this, ForgetPassword.class);
                 startActivity(intent);
             }
         });
@@ -78,7 +78,7 @@ public class LoginInActivity extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginInActivity.this, SignUpActivity.class);
+                Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         });
@@ -111,18 +111,18 @@ public class LoginInActivity extends AppCompatActivity {
                         if (state == 0){
                             editor.putBoolean("isLogin",true);
                             editor.apply();
-                            Intent intent = new Intent(LoginInActivity.this, MainActivity.class);
+                            Intent intent = new Intent(LogInActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();
                         }else {
                             Looper.prepare();
-                            Toast.makeText(LoginInActivity.this,"密码错误！",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LogInActivity.this,"密码错误！",Toast.LENGTH_SHORT).show();
                             Looper.loop();
                         }
                     }else {
                         Log.d("login:",result.toString());
                         Looper.prepare();
-                        Toast.makeText(LoginInActivity.this,"用户不存在！",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LogInActivity.this,"用户不存在！",Toast.LENGTH_SHORT).show();
                         Looper.loop();
                     }
 

@@ -5,31 +5,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import java.util.prefs.Preferences;
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private BottomNavigationView navigationView;
     private ViewPager viewPager;
     private TextView topText;
-//    private TextView myClassroomText;
-//    private ImageView myClassroomView;
-//    private ImageView joinClassroomView;
-//    private TextView joinClassroomText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +34,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager)findViewById(R.id.main_viewpager);
         topText = (TextView) findViewById(R.id.top_text);
 
-//        myClassroomView = (ImageView) findViewById(R.id.my_classroom_view);
-//        myClassroomText = (TextView) findViewById(R.id.my_classroom_button);
-//        joinClassroomText = (TextView)findViewById(R.id.join_classroom_button);
-//        joinClassroomView = (ImageView)findViewById(R.id.join_classroom_view);
 
         BottomAdapter adapter = new BottomAdapter(getSupportFragmentManager());
         adapter.addFragment(new HomeFragment());

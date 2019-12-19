@@ -16,7 +16,6 @@ import org.json.JSONObject;
 
 import java.net.URL;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
@@ -48,7 +47,7 @@ public class SignUpActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignUpActivity.this,LoginInActivity.class);
+                Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
                 startActivity(intent);
             }
         });
@@ -114,7 +113,7 @@ public class SignUpActivity extends AppCompatActivity {
                         Log.d("注册return",result.toString());
 //                        Log.d("state",String.valueOf(state));
                         if (state == 0){
-                            Intent intent = new Intent(SignUpActivity.this, LoginInActivity.class);
+                            Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
                             startActivity(intent);
                             Looper.prepare();
                             Toast.makeText(SignUpActivity.this,"注册成功！",Toast.LENGTH_SHORT).show();

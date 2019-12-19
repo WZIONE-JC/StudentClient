@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".CourseMain"></activity>
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,23 +21,21 @@
             </intent-filter>
         </activity>
         <activity android:name=".ForgetPassword" />
-        <activity android:name=".MainActivity"
-            android:label=""/>
         <activity
-            android:name=".SignUpActivity" />
+            android:name=".MainActivity"
+            android:label="" />
+        <activity android:name=".SignUpActivity" />
         <activity
-            android:name=".LoginInActivity"
-            android:launchMode="singleTask">
-        </activity>
-        <activity android:name=".ModifyPersonal"></activity>
-        <activity android:name=".SelectPicture"
-            android:theme="@style/DialogStyleBottom">
-
-        </activity>
+            android:name=".LogInActivity"
+            android:launchMode="singleTask"></activity>
+        <activity android:name=".ModifyPersonal" />
+        <activity
+            android:name=".SelectPicture"
+            android:theme="@style/DialogStyleBottom"></activity>
         <activity
             android:name=".JoinClass"
             android:label="@string/title_activity_join_class"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MyClass"
             android:label="@string/title_activity_my_class"

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#EDEDED"
     tools:context=".HomeFragment">
 
     <LinearLayout
@@ -150,15 +151,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="#EDEDED"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:gravity="center">
 
         <LinearLayout
-            android:layout_margin="5dp"
+            android:layout_margin="8dp"
             android:id="@+id/my_classroom"
-            android:layout_width="145dp"
-            android:layout_height="145dp"
-            android:orientation="vertical"
-            android:background="@drawable/circle_background">
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:background="@drawable/background"
+            android:orientation="vertical">
             <ImageView
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
@@ -179,13 +183,15 @@
                 android:gravity="center_horizontal"/>
         </LinearLayout>
 
+
         <LinearLayout
+            android:background="@drawable/background"
             android:id="@+id/join_classroom"
-            android:layout_margin="5dp"
-            android:layout_width="145dp"
-            android:layout_height="145dp"
+            android:layout_margin="8dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
             android:orientation="vertical"
-            android:background="@drawable/circle_background">
+            >
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
