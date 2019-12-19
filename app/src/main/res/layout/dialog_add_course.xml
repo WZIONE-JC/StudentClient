@@ -14,13 +14,17 @@
         android:text="上课教室"/>
 
     <Spinner
+        android:entries="@array/weekday"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/course_day"/>
+        android:id="@+id/course_day"
+        android:spinnerMode="dialog"/>
 
     <Spinner
+        android:entries="@array/time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/course_time"/>
+        android:id="@+id/course_time"
+        android:spinnerMode="dialog"/>
 
 </LinearLayout>

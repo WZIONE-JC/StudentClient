@@ -15,6 +15,8 @@ import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.litepal.LitePal;
+
 
 public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        LitePal.getDatabase();
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 

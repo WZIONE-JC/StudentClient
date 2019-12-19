@@ -2,7 +2,8 @@
 <LinearLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/user_border">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -31,9 +32,9 @@
     <TableLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="4dp"
         android:id="@+id/course_table"
-        tools:context=".CourseTable"
-        android:background="@color/user_border">
+        tools:context=".CourseTable">
 
         <TableRow
             android:orientation="horizontal"
