@@ -26,7 +26,6 @@ public class CourseMain extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CourseMain.this,MyClass.class));
                 finish();
             }
         });

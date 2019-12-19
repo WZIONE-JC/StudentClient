@@ -12,7 +12,7 @@
 
 
         <ImageView
-            android:id="@+id/back"
+            android:id="@+id/back_home_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -40,6 +40,7 @@
             android:layout_weight="1"
             >
             <ImageView
+                android:id="@+id/add_new_course"
                 style="@style/course_table_menu"
                 android:src="@drawable/ic_add_course"
                 android:layout_weight="1"/>
