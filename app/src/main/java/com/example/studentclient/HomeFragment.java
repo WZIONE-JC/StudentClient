@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
         moreCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(getActivity(),CourseMain.class));
+                startActivity(new Intent(getActivity(),CourseTable.class));
 //               go to course_table activity
 //
             }
