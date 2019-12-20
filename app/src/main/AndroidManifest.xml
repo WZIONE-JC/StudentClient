@@ -13,7 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EditCourse"></activity>
         <activity android:name=".AddCourse" />
         <activity android:name=".CourseTable" />
         <activity android:name=".CourseMain" />
@@ -34,16 +33,14 @@
             android:launchMode="singleTask" />
         <activity android:name=".ModifyPersonal" />
         <activity
-            android:name=".SelectPicture"
-            android:theme="@style/DialogStyleBottom" />
-        <activity
             android:name=".JoinClass"
             android:label="@string/title_activity_join_class"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MyClass"
-            android:label="@string/title_activity_my_class"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SelectPicture"
+            android:theme="@style/DialogStyleBottom"/>
     </application>
 
 </manifest>

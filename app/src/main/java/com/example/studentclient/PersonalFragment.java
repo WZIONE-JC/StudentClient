@@ -1,7 +1,9 @@
 package com.example.studentclient;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +19,12 @@ import androidx.fragment.app.Fragment;
 
 public class PersonalFragment extends Fragment implements View.OnClickListener{
 
+    private SharedPreferences.Editor editor;
+    private SharedPreferences preferences;
     private TextView t_name;
     private Button btn_quit;
     private LinearLayout preson_data;
-    private LinearLayout collection;
     private LinearLayout courseware;
-    private LinearLayout discussion;
-    private LinearLayout phone;
-    private LinearLayout share;
     private LinearLayout feedback;
     private LinearLayout about_us;
     private ImageView img_head;
@@ -45,20 +45,14 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
                 break;
             case R.id.btn_quit://退出登陆
                 getActivity().finish();
+                editor.putBoolean("isLogin",false);
+                editor.apply();
                 startActivity(new Intent(getActivity(), LogInActivity.class));
                 break;
             case R.id.preson_data:
                 startActivity(new Intent(getActivity(), ModifyPersonal.class));
                 break;
-            case R.id.collect:
-                break;
             case R.id.courseware:
-                break;
-            case R.id.discuss:
-                break;
-            case R.id.phone:
-                break;
-            case R.id.share:
                 break;
             case R.id.feedback:
                 break;
@@ -79,21 +73,23 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
 
         preson_data=(LinearLayout)view.findViewById(R.id.preson_data);
         preson_data.setOnClickListener(this);
+        preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        editor = preferences.edit();
 
-        collection=(LinearLayout)view.findViewById(R.id.collect);
-        collection.setOnClickListener(this);
+//        collection=(LinearLayout)view.findViewById(R.id.collect);
+//        collection.setOnClickListener(this);
 
         courseware=(LinearLayout)view.findViewById(R.id.courseware);
         courseware.setOnClickListener(this);
 
-        discussion=(LinearLayout)view.findViewById(R.id.discuss);
-        discussion.setOnClickListener(this);
-
-        phone=(LinearLayout)view.findViewById(R.id.phone);
-        phone.setOnClickListener(this);
-
-        share=(LinearLayout)view.findViewById(R.id.share);
-        share.setOnClickListener(this);
+//        discussion=(LinearLayout)view.findViewById(R.id.discuss);
+//        discussion.setOnClickListener(this);
+//
+//        phone=(LinearLayout)view.findViewById(R.id.phone);
+//        phone.setOnClickListener(this);
+//
+//        share=(LinearLayout)view.findViewById(R.id.share);
+//        share.setOnClickListener(this);
 
         feedback=(LinearLayout)view.findViewById(R.id.feedback);
         feedback.setOnClickListener(this);

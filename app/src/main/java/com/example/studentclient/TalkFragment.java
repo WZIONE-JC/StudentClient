@@ -20,4 +20,9 @@ public class TalkFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_talk,null);
         return view;
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
 }
