@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import org.litepal.LitePal;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 
@@ -66,6 +68,26 @@ public class CourseTable extends AppCompatActivity {
     }
 
     private void readCourse(){
+        Calendar calendar = Calendar.getInstance();
+        int week = calendar.get(Calendar.DAY_OF_WEEK) - 1;
+        Resources resources = getResources();
+        String name;
+        if (week == 0){
+            for (int i = 1; i < 8; i++) {
+                name = "item_" + 7 + "_" + i;
+                int resId = resources.getIdentifier(name,"id",this.getPackageName());
+                TextView textView = (TextView)findViewById(resId);
+                textView.setBackground(getResources().getDrawable(R.drawable.course_bg_0));
+            }
+        }else {
+            for (int i = 1; i < 8; i++) {
+                name = "item_" + week + "_" + i;
+                int resId = resources.getIdentifier(name,"id",this.getPackageName());
+                TextView textView = (TextView)findViewById(resId);
+                textView.setBackground(getResources().getDrawable(R.drawable.course_bg_0));
+            }
+        }
+        Log.d("today",String.valueOf(week));
         List<Course> courses = LitePal.findAll(Course.class);
         for (Course temp : courses) {
             row = temp.getTime();

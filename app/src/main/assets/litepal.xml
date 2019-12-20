@@ -33,6 +33,7 @@
     -->
     <list>
         <mapping class = "com.example.studentclient.Course"/>
+        <mapping class = "com.example.studentclient.TalkCardTable"/>
     </list>
 
     <!--

@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".WriteNewCard"></activity>
         <activity android:name=".AddCourse" />
         <activity android:name=".CourseTable" />
         <activity android:name=".CourseMain" />
@@ -39,8 +40,9 @@
         <activity
             android:name=".MyClass"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SelectPicture"
-            android:theme="@style/DialogStyleBottom"/>
+        <activity
+            android:name=".SelectPicture"
+            android:theme="@style/DialogStyleBottom" />
     </application>
 
 </manifest>
