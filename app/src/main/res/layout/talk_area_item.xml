@@ -36,6 +36,9 @@
             android:orientation="vertical">
 
             <TextView
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
                 android:id="@+id/talk_card_name"
                 android:layout_marginTop="3dp"
                 android:layout_width="match_parent"
@@ -49,18 +52,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:ellipsize="end"
+                android:singleLine="false"
                 android:maxLines="2"
                 android:text="Title"
                 android:textSize="20sp"/>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/menu"/>
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:background="@color/menu"/>-->
             <TextView
                 android:id="@+id/talk_card_text"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="false"
                 android:maxLines="2"
                 android:text="内容"/>
 

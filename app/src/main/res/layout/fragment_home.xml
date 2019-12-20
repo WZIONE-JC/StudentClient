@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#EDEDED"
+
     tools:context=".HomeFragment">
 
     <LinearLayout
@@ -18,125 +18,161 @@
         android:background="@drawable/background">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:text="今日课程"
             android:layout_gravity="center"
             android:textSize="18sp"
             android:textColor="@color/deep_gray"/>
-
-        <LinearLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="1dp"
+            android:background="@color/user_border"/>
+        <LinearLayout
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="time"
-                android:textSize="18sp"
-                android:gravity="center"
+                android:layout_weight="6"
+                android:textSize="15sp"
+                android:gravity="left"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
                 android:id="@+id/today_course_1_time"
                 android:layout_height="match_parent"
                 android:textColor="@color/deep_gray"/>
 
             <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:text="course_name"
-                android:gravity="center"
+                android:layout_weight="8"
+                android:textSize="15sp"
+                android:gravity="left"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
                 android:id="@+id/today_course_1_name"
                 android:layout_height="match_parent"
                 android:textColor="@color/deep_gray"/>
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="place"
-                android:textSize="18sp"
-                android:gravity="center"
+                android:layout_weight="3"
+                android:textSize="15sp"
+                android:gravity="left"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
                 android:id="@+id/today_course_1_place"
                 android:layout_height="match_parent"
                 android:textColor="@color/deep_gray"/>
 
         </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="5dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="time"
-                android:textSize="18sp"
+                android:layout_weight="6"
+                android:textSize="15sp"
                 android:id="@+id/today_course_2_time"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="left"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
                 android:textColor="@color/deep_gray"/>
 
             <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="course_name"
-                android:textSize="18sp"
+                android:layout_weight="8"
+                android:textSize="15sp"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
                 android:id="@+id/today_course_2_name"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="left"
                 android:textColor="@color/deep_gray"/>
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="place"
-                android:textSize="18sp"
+                android:layout_weight="3"
+                android:textSize="15sp"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
                 android:id="@+id/today_course_2_place"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="left"
                 android:textColor="@color/deep_gray"/>
 
         </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="5dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="time"
-                android:textSize="18sp"
+                android:layout_weight="6"
+                android:textSize="15sp"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
                 android:id="@+id/today_course_3_time"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="left"
                 android:textColor="@color/deep_gray"/>
 
             <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:text="course_name"
-                android:textSize="18sp"
+                android:layout_weight="8"
+                android:textSize="15sp"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
                 android:id="@+id/today_course_3_name"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="left"
                 android:textColor="@color/deep_gray"/>
 
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="3"
+                android:ellipsize="end"
+                android:singleLine="false"
+                android:maxLines="1"
                 android:id="@+id/today_course_3_place"
                 android:layout_height="match_parent"
-                android:text="place"
-                android:textSize="18sp"
-                android:gravity="center"
+                android:textSize="15sp"
+                android:gravity="left"
                 android:textColor="@color/deep_gray"/>
 
         </LinearLayout>
         <Button
             android:id="@+id/more_course"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_gravity="right"
             android:layout_margin="5dp"
             android:background="@null"
@@ -151,7 +187,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#EDEDED"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:gravity="center">

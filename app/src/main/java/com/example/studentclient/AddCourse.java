@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.litepal.LitePal;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,6 +75,16 @@ public class AddCourse extends AppCompatActivity {
                 row = courseTime.getSelectedItemPosition() + 1;
                 Log.d("col", String.valueOf(col));
                 Log.d("row",String.valueOf(row));
+                List<Course> courses = LitePal.
+                        where("weekday = ?",String.valueOf(col)).
+                        where("time = ?",String.valueOf(row)).find(Course.class);
+                if (courses == null || courses.size() == 0){
+
+                }else {
+                    for (int i = 0; i < courses.size(); i++) {
+                        courses.get(i).delete();
+                    }
+                }
                 Course course = new Course();
                 course.setName(name.getText().toString());
                 course.setPlace(classroom.getText().toString());
