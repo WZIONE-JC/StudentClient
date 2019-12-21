@@ -57,7 +57,13 @@
         <activity
             android:name=".SelectPicture"
             android:theme="@style/DialogStyleBottom" />
-
+        <activity android:name=".MyHomework"/>
+        <activity android:name=".HomeworkDetail"/>
+        <activity
+            android:name=".Courseware"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ShowMoreInfo"></activity>
+        <activity android:name=".MoreInfo" />
     </application>
 
 </manifest>

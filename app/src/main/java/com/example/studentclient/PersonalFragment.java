@@ -55,6 +55,7 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
             case R.id.courseware:
                 break;
             case R.id.feedback:
+                startActivity(new Intent(getActivity(), ForgetPassword.class));
                 break;
             case R.id.about_us:
                 break;
