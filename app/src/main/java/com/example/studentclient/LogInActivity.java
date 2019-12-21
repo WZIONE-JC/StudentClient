@@ -32,7 +32,7 @@ public class LogInActivity extends AppCompatActivity {
     private EditText password;
     private String username;
     private String pass;
-    private String path = "http://122.51.186.91:8081/student/login";
+    private String path = MyStaticValue.LOGIN_PATH;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,8 +107,12 @@ public class LogInActivity extends AppCompatActivity {
                     Log.d("da",result.toString());
                     if (result.has("state")){
                         int state = result.getInt("state");
+                        String token = result.getString("token");
+
 //                        Log.d("Login",String.valueOf(state));
                         if (state == 0){
+                            editor.putString("id",username);
+                            editor.putString("token",token);
                             editor.putBoolean("isLogin",true);
                             editor.apply();
                             Intent intent = new Intent(LogInActivity.this, MainActivity.class);

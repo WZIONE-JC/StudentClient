@@ -31,7 +31,7 @@ public class SignUpActivity extends AppCompatActivity {
     private String userId;
     private String userName;
     private String pass;
-    private String path = "http://122.51.186.91:8081//student/register";
+    private String path = MyStaticValue.SIGNUP_PATH;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +47,7 @@ public class SignUpActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 

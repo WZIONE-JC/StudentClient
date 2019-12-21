@@ -3,6 +3,9 @@
     package="com.example.studentclient">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name="org.litepal.LitePalApplication"
@@ -13,6 +16,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
+        <provider
+            android:authorities="com.example.studentclient.provider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
+
         <activity android:name=".WriteNewCard"></activity>
         <activity android:name=".AddCourse" />
         <activity android:name=".CourseTable" />
@@ -43,6 +57,7 @@
         <activity
             android:name=".SelectPicture"
             android:theme="@style/DialogStyleBottom" />
+
     </application>
 
 </manifest>
