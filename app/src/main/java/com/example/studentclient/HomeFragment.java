@@ -93,21 +93,20 @@ public class HomeFragment extends Fragment {
 
         int number = 0;
 
+        TextView textTip = (TextView)getActivity().findViewById(R.id.text_no_course_tip);
+
+        //隐藏课程
         for (int i = 1; i < 4; i++) {
             Resources resources = getResources();
-            String id1 = "today_course_" + i + "_time";
-            String id2 = "today_course_" + i + "_name";
-            String id3 = "today_course_" + i + "_place";
+            String id= "layout_course_" + i;
 
-            int resId1 = resources.getIdentifier(id1,"id",getActivity().getPackageName());
-            int resId2 = resources.getIdentifier(id2,"id",getActivity().getPackageName());
-            int resId3 = resources.getIdentifier(id3,"id",getActivity().getPackageName());
-            TextView textTime = (TextView)getActivity().findViewById(resId1);
-            TextView textName = (TextView)getActivity().findViewById(resId2);
-            TextView textPlace = (TextView)getActivity().findViewById(resId3);
-            textTime.setVisibility(View.GONE);
-            textName.setVisibility(View.GONE);
-            textPlace.setVisibility(View.GONE);
+            int resId = resources.getIdentifier(id,"id",getActivity().getPackageName());
+            LinearLayout layout = (LinearLayout) getActivity().findViewById(resId);
+
+            layout.setVisibility(View.GONE);
+        }
+        if(courses.size()>0){
+            textTip.setVisibility(View.GONE);
         }
         for (Course c : courses) {
             number++;
@@ -125,9 +124,16 @@ public class HomeFragment extends Fragment {
             TextView textTime = (TextView)getActivity().findViewById(resId1);
             TextView textName = (TextView)getActivity().findViewById(resId2);
             TextView textPlace = (TextView)getActivity().findViewById(resId3);
-            textTime.setVisibility(View.VISIBLE);
-            textName.setVisibility(View.VISIBLE);
-            textPlace.setVisibility(View.VISIBLE);
+
+
+            String id= "layout_course_" + number;
+
+            int resId = resources.getIdentifier(id,"id",getActivity().getPackageName());
+            LinearLayout layout = (LinearLayout) getActivity().findViewById(resId);
+
+            layout.setVisibility(View.VISIBLE);
+
+
             String time = c.getTime();
             String name = c.getName();
             String place = c.getPlace();
