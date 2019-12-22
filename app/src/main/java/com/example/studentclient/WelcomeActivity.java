@@ -64,7 +64,7 @@ public class WelcomeActivity extends AppCompatActivity {
                             .build();
                     okhttp3.Response response = client.newCall(request).execute();
                     String responseData = response.body().string();
-                    Log.d("w",responseData);
+                    Log.d("欢迎界面登录",responseData);
                     JSONObject result = new JSONObject(responseData);
 
                     if (result.has("state")){
