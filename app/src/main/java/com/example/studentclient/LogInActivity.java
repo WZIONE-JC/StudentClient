@@ -90,10 +90,11 @@ public class LogInActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
+                    String passMD5 = MD5(pass);
                     OkHttpClient client = new OkHttpClient();
                     RequestBody requestBody = new FormBody.Builder()
                             .add("user_id",username)
-                            .add("password",MD5(pass))
+                            .add("password",passMD5)
                             .build();
                     okhttp3.Request request = new okhttp3.Request.Builder()
                             .url(new URL(path))
@@ -114,6 +115,7 @@ public class LogInActivity extends AppCompatActivity {
                             editor.putString("id",username);
                             editor.putString("token",token);
                             editor.putBoolean("isLogin",true);
+                            editor.putString("pass",passMD5);
                             editor.apply();
                             Intent intent = new Intent(LogInActivity.this, MainActivity.class);
                             startActivity(intent);
