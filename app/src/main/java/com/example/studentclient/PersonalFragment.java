@@ -143,7 +143,7 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
             uploadAvatar();//上传头像
         }
 
-//        refreshData();//更新头像
+        refreshData();//更新头像
 
 
         t_name.setText(preferences.getString("name","昵称"));

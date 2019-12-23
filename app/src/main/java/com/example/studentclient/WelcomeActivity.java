@@ -42,6 +42,7 @@ public class WelcomeActivity extends AppCompatActivity {
                     loginAgain();
                     //go to main activity
                 }
+                finish();
 
             }
         },1000);
