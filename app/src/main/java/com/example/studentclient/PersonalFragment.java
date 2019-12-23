@@ -6,8 +6,12 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +26,21 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 
 public class PersonalFragment extends Fragment implements View.OnClickListener{
@@ -115,6 +134,7 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onResume() {
         super.onResume();
+        uploadAvatar();
         t_name.setText(preferences.getString("name","昵称"));
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
                             !=PackageManager.PERMISSION_GRANTED){
@@ -126,7 +146,8 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
         Bitmap bitmap = null;
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 2;
-        bitmap = BitmapFactory.decodeFile("/sdcard/avatar.jpg", options);
+        File file = new File(Environment.getExternalStorageDirectory(),"avatar.jpg");
+        bitmap = BitmapFactory.decodeFile(file.getPath(), options);
         img_head.setImageBitmap(bitmap);
     }
 
@@ -141,5 +162,50 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
                 }
                 break;
         }
+    }
+
+    private void uploadAvatar(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    File file = new File("//sdcard/avatar.jpg");
+                    RequestBody fileBody = RequestBody.create(MediaType.parse("image/*"),file);
+                    RequestBody requestBody = new MultipartBody.Builder()
+                            .setType(MultipartBody.FORM)
+                            .addFormDataPart("user_no",preferences.getString("user_id",""))
+                            .addFormDataPart("file",file.getName(),fileBody)
+                            .addFormDataPart("token",preferences.getString("token",""))
+                            .build();
+
+                    Request request = new Request.Builder()
+                            .header("Content-Type","multipart/form-data")
+                            .url(new URL(MyStaticValue.UPLOAD_AVATAR_PATH))
+                            .post(requestBody)
+                            .build();
+
+                   client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                            Log.i("lfq" ,"onFailure");
+                        }
+
+                        @Override
+                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                            if (response.isSuccessful()) {
+                                String str = response.body().string();
+                                Log.i("lfq", response.message() + " , body " + str);
+
+                            } else {
+                                Log.i("lfq" ,response.message() + " error : body " + response.body().string());
+                            }
+                        }
+                    });
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }
