@@ -69,16 +69,17 @@ public class WelcomeActivity extends AppCompatActivity {
 
                     if (result.has("state")){
                         int state = result.getInt("state");
-                        String token = result.getString("token");
-
 //                        Log.d("Login",String.valueOf(state));
                         if (state == 0){
+                            String token = result.getString("token");
                             editor.putString("token",token);
                             editor.putBoolean("isLogin",true);
                             editor.apply();
                             Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
                             startActivity(intent);
                         }else {
+                            editor.putBoolean("isLogin",false);
+                            editor.apply();
                             Looper.prepare();
                             Toast.makeText(WelcomeActivity.this,"密码错误！",Toast.LENGTH_SHORT).show();
                             Looper.loop();
@@ -86,6 +87,8 @@ public class WelcomeActivity extends AppCompatActivity {
                         }
                         finish();//destroy this activity
                     }else {
+                        editor.putBoolean("isLogin",false);
+                        editor.apply();
                         Log.d("login:",result.toString());
                         Looper.prepare();
                         Toast.makeText(WelcomeActivity.this,"用户不存在！",Toast.LENGTH_SHORT).show();
@@ -94,7 +97,13 @@ public class WelcomeActivity extends AppCompatActivity {
                         finish();//destroy this activity
                     }
                 }catch (Exception e){
-                    e.printStackTrace();
+                    editor.putBoolean("isLogin",false);
+                    editor.apply();
+                    Looper.prepare();
+                    Toast.makeText(WelcomeActivity.this,"服务器异常！",Toast.LENGTH_SHORT).show();
+                    Looper.loop();
+                    startActivity(new Intent(WelcomeActivity.this,LogInActivity.class));
+                    finish();
                 }
             }
         }).start();

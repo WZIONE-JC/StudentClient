@@ -28,6 +28,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,6 +37,7 @@ import java.net.URL;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -134,7 +137,15 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onResume() {
         super.onResume();
-        uploadAvatar();
+
+        boolean uploadAvatar = preferences.getBoolean("uploadAvatar",false);
+        if (uploadAvatar){
+            uploadAvatar();//上传头像
+        }
+
+//        refreshData();//更新头像
+
+
         t_name.setText(preferences.getString("name","昵称"));
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
                             !=PackageManager.PERMISSION_GRANTED){
@@ -169,18 +180,18 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
             @Override
             public void run() {
                 try {
+                    String fileName = preferences.getString("id","")+".jpg";
                     OkHttpClient client = new OkHttpClient();
                     File file = new File("//sdcard/avatar.jpg");
-                    RequestBody fileBody = RequestBody.create(MediaType.parse("image/*"),file);
+                    RequestBody fileBody = RequestBody.create(MediaType.parse("file/*"),file);
                     RequestBody requestBody = new MultipartBody.Builder()
                             .setType(MultipartBody.FORM)
                             .addFormDataPart("user_no",preferences.getString("user_id",""))
-                            .addFormDataPart("file",file.getName(),fileBody)
+                            .addFormDataPart("file",fileName,fileBody)
                             .addFormDataPart("token",preferences.getString("token",""))
                             .build();
 
                     Request request = new Request.Builder()
-                            .header("Content-Type","multipart/form-data")
                             .url(new URL(MyStaticValue.UPLOAD_AVATAR_PATH))
                             .post(requestBody)
                             .build();
@@ -194,11 +205,87 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
                         @Override
                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                             if (response.isSuccessful()) {
-                                String str = response.body().string();
-                                Log.i("lfq", response.message() + " , body " + str);
+                                String result = response.body().string();
+                                try {
+                                    JSONObject object = new JSONObject(result);
+                                    int state = object.getInt("state");
+                                    if (state == 0){
+                                        Log.d("上传头像",result);
+                                        editor.putBoolean("uploadAvatar",false);
+                                        editor.apply();
+                                    }else {
+                                        Toast.makeText(getContext(), "登录失效！请重新登录", Toast.LENGTH_SHORT).show();
+                                        editor.putBoolean("isLogin",false);
+                                        editor.apply();
+                                        startActivity(new Intent(getContext(),LogInActivity.class));
+                                        getActivity().finish();
+
+                                    }
+                                }catch (JSONException e){
+                                    e.printStackTrace();
+                                }
 
                             } else {
                                 Log.i("lfq" ,response.message() + " error : body " + response.body().string());
+                            }
+                        }
+                    });
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+
+    /**
+     * 刷新页面信息
+     */
+    private void refreshData(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    RequestBody requestBody = new FormBody.Builder()
+                            .add("user_no",preferences.getString("user_id",""))
+                            .add("token",preferences.getString("token",""))
+                            .build();
+
+                    Request request = new Request.Builder()
+                            .url(new URL(MyStaticValue.GET_AVATAR_PATH))
+                            .post(requestBody)
+                            .build();
+
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                            Log.i("lfq" ,"onFailure");
+                        }
+
+                        @Override
+                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                            if (response.isSuccessful()) {
+                                try {
+                                    String result = response.body().string();
+                                    Log.d("s",result);
+                                    JSONObject object = new JSONObject(result);
+                                    int state = object.getInt("state");
+                                    if (state == 0){
+                                        //图片保存在本地
+                                    }else {
+                                        Toast.makeText(getContext(), "登录失效！请重新登录", Toast.LENGTH_SHORT).show();
+                                        editor.putBoolean("isLogin",false);
+                                        editor.apply();
+                                        startActivity(new Intent(getContext(),LogInActivity.class));
+                                        getActivity().finish();
+                                    }
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+
+                            } else {
+                                Log.i("更新头像出错" ,response.message() + " error : body " + response.body().string());
                             }
                         }
                     });

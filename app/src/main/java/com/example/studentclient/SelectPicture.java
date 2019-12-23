@@ -2,6 +2,7 @@ package com.example.studentclient;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,6 +50,10 @@ public class SelectPicture extends AppCompatActivity  implements View.OnClickLis
     private Uri photoUri;
     private Uri photoOutputUri = null;
 
+    private SharedPreferences.Editor editor;
+    private SharedPreferences preferences;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +69,8 @@ public class SelectPicture extends AppCompatActivity  implements View.OnClickLis
     }
 
     private void initview() {
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = preferences.edit();
         btn_cancel=findViewById(R.id.cancel);
         text_take_photo=(TextView)findViewById(R.id.take_photo);
         text_pick_photo=(TextView)findViewById(R.id.pick_photo);
@@ -164,7 +172,8 @@ public class SelectPicture extends AppCompatActivity  implements View.OnClickLis
                     cropPhoto(data.getData());
                 case CROP_PHOTO_REQUEST_CODE:
                     //上传图片
-
+                    editor.putBoolean("uploadAvatar",true);
+                    editor.apply();
                     finish();
                     break;
 
