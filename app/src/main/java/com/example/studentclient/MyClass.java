@@ -19,6 +19,8 @@ import java.util.Map;
 
 public class MyClass extends Activity implements AdapterView.OnItemClickListener{
     private ListView listv;
+
+    //从classroom表获取信息
     //private int[] pic={R.drawable.ic_1,R.drawable.ic_2,R.drawable.ic_3};
     private	String[] classname={"移动应用开发","操作系统"};
     private  String[] person={"张迪老师","张迪老师"};

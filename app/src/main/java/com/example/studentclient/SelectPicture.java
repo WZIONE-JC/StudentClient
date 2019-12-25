@@ -197,7 +197,7 @@ public class SelectPicture extends AppCompatActivity  implements View.OnClickLis
         cropPhotoIntent.putExtra("scale", true);
         // 设置图片的最终输出目录
         cropPhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                photoOutputUri = Uri.parse("file:///sdcard/avatar.jpg"));
+                photoOutputUri = Uri.parse("file:///sdcard/"+ preferences.getString("id","")+".jpg"));
         cropPhotoIntent.putExtra("return-data", false);
         cropPhotoIntent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
         cropPhotoIntent.putExtra("noFaceDetection", true); // no face detection

@@ -86,7 +86,6 @@ public class WelcomeActivity extends AppCompatActivity {
                             Looper.loop();
                             startActivity(new Intent(WelcomeActivity.this,LogInActivity.class));
                         }
-                        finish();//destroy this activity
                     }else {
                         editor.putBoolean("isLogin",false);
                         editor.apply();
@@ -95,7 +94,6 @@ public class WelcomeActivity extends AppCompatActivity {
                         Toast.makeText(WelcomeActivity.this,"用户不存在！",Toast.LENGTH_SHORT).show();
                         Looper.loop();
                         startActivity(new Intent(WelcomeActivity.this,LogInActivity.class));
-                        finish();//destroy this activity
                     }
                 }catch (Exception e){
                     editor.putBoolean("isLogin",false);
@@ -104,7 +102,6 @@ public class WelcomeActivity extends AppCompatActivity {
                     Toast.makeText(WelcomeActivity.this,"服务器异常！",Toast.LENGTH_SHORT).show();
                     Looper.loop();
                     startActivity(new Intent(WelcomeActivity.this,LogInActivity.class));
-                    finish();
                 }
             }
         }).start();
