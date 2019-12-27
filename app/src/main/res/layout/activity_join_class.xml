@@ -35,12 +35,14 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/textjoin"
+            android:id="@+id/text_join_code"
             android:layout_width="210dp"
             android:layout_height="59dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="25dp"
             android:gravity="center"
+            android:maxLength="6"
+            android:digits="@string/number_letter"
             android:hint="请输入邀请码"
             android:numeric="integer"
             android:paddingLeft="5dp"
@@ -50,7 +52,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/button_sign_up_ok"
+        android:id="@+id/button_join_class"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
@@ -62,15 +64,15 @@
         android:textSize="20sp" />
 
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:layout_marginStart="0dp"
-        android:background="@null"
-        android:text="扫描二维码加入"
-        android:textColor="@color/color_1296db" />
+<!--    <Button-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="50dp"-->
+<!--        android:layout_marginRight="50dp"-->
+<!--        android:layout_marginStart="0dp"-->
+<!--        android:background="@null"-->
+<!--        android:text="扫描二维码加入"-->
+<!--        android:textColor="@color/color_1296db" />-->
 
 
 </LinearLayout>

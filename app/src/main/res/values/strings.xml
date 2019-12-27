@@ -6,6 +6,9 @@
     <string name="number_and_letter">
         0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.
     </string>
+    <string name="number_letter">
+        0123456789abcdefghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+    </string>
     <string name="home">首页</string>
     <string name="talk_area">讨论区</string>
     <string name="personal_info">我</string>
