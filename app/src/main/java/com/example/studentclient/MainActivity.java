@@ -8,9 +8,12 @@ import androidx.core.content.ContextCompat;
 import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,7 +23,20 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.jetbrains.annotations.NotNull;
+import org.json.JSONObject;
 import org.litepal.LitePal;
+
+import java.io.IOException;
+import java.net.URL;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TextView topText;
     private static final int WRITE_SDCARD_PERMISSION_REQUEST_CODE = 1;
+    private SharedPreferences.Editor editor;
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +67,10 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new TalkFragment());
         adapter.addFragment(new PersonalFragment());
         viewPager.setAdapter(adapter);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = preferences.edit();
 
-
+        initData();
         /**
          * TODO change view
          */
@@ -126,5 +146,60 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
+    }
+
+    private void initData(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    RequestBody body = new FormBody.Builder()
+                            .add("user_id",preferences.getString("id",""))
+                            .add("token",preferences.getString("token",""))
+                            .build();
+
+                    Request request = new Request.Builder()
+                            .url(new URL(MyStaticValue.GET_INFO_PATH))
+                            .post(body)
+                            .build();
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NotNull Call call, @NotNull IOException e) {
+
+                        }
+
+                        @Override
+                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                            if (response.isSuccessful()){
+                                byte[] b = response.body().bytes();
+                                String result = new String(b,"UTF-8");
+                                try {
+                                    JSONObject object = new JSONObject(result);
+                                    Log.d("a",object.toString());
+                                    int state = object.getInt("state");
+                                    if (state == 0){
+                                        JSONObject student = object.getJSONObject("student");
+                                        editor.putString("name",student.getString("student_name"));
+                                        editor.putString("sex",student.getString("sex"));
+                                        editor.putString("school",student.getString("school"));
+                                        editor.putString("major",student.getString("major"));
+                                        editor.apply();
+
+                                    }
+                                }catch (Exception e1){
+                                    e1.printStackTrace();
+                                }
+                            }else {
+                                Log.d("a",response.body().string());
+                            }
+                        }
+                    });
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }

@@ -85,10 +85,11 @@ public class ModifyPersonal extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initData(){
+
         //其实应该先从服务器获取数据更新本地信息
 
         String id = preferences.getString("id","xxx");
-        String name = preferences.getString("name","xxx");
+        String name = preferences.getString("name","昵称");
         String school = preferences.getString("school","北京交通大学");
         String major = preferences.getString("major","软件工程");
         String phone = preferences.getString("phone","xxx");
@@ -107,6 +108,7 @@ public class ModifyPersonal extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+
     private void submitInfo(){
         new Thread(new Runnable() {
             @Override
@@ -122,11 +124,10 @@ public class ModifyPersonal extends AppCompatActivity implements View.OnClickLis
                     OkHttpClient client = new OkHttpClient();
                     RequestBody requestBody = new FormBody.Builder()
                             .add("user_id",t_id.getText().toString())
-                            .add("student_name",name.getText().toString())
+                            .add("user_name",name.getText().toString())
                             .add("sex",type)
                             .add("school",collage.getText().toString())
                             .add("major",major.getText().toString())
-                            .add("avatar_id","1")
                             .add("token",preferences.getString("token","no_token"))
                             .build();
 
