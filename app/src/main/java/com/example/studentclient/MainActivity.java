@@ -24,11 +24,13 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.litepal.LitePal;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -69,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         editor = preferences.edit();
-
+        getClassInfo();
         initData();
         /**
          * TODO change view
@@ -127,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -147,6 +148,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+
+
 
     private void initData(){
         new Thread(new Runnable() {
@@ -172,19 +176,84 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                             if (response.isSuccessful()){
-                                byte[] b = response.body().bytes();
-                                String result = new String(b,"UTF-8");
+                                String result = response.body().string();
                                 try {
                                     JSONObject object = new JSONObject(result);
                                     Log.d("a",object.toString());
-                                    int state = object.getInt("state");
-                                    if (state == 0){
+                                    int status = object.getInt("state");
+                                    if (status == 0){
                                         JSONObject student = object.getJSONObject("student");
                                         editor.putString("name",student.getString("student_name"));
                                         editor.putString("sex",student.getString("sex"));
                                         editor.putString("school",student.getString("school"));
                                         editor.putString("major",student.getString("major"));
                                         editor.apply();
+                                    }
+                                }catch (Exception e1){
+                                    e1.printStackTrace();
+                                }
+                            }else {
+                                Log.d("a",response.body().string());
+                            }
+                        }
+                    });
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    private void getClassInfo(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    OkHttpClient client = new OkHttpClient();
+                    RequestBody body = new FormBody.Builder()
+                            .add("student_no",preferences.getString("id",""))
+                            .add("token",preferences.getString("token",""))
+                            .build();
+
+                    Request request = new Request.Builder()
+                            .url(new URL(MyStaticValue.GET_CLASS_INFO))
+                            .post(body)
+                            .build();
+                    client.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(@NotNull Call call, @NotNull IOException e) {
+
+                        }
+
+                        @Override
+                        public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                            if (response.isSuccessful()){
+                                String result = response.body().string();
+                                try {
+                                    JSONObject object = new JSONObject(result);
+                                    Log.d("a",object.toString());
+                                    int state = object.getInt("status");
+                                    if (state == 0){
+                                        JSONArray list = object.getJSONArray("list");
+                                        for (int i = 0; i < list.length(); i++) {
+                                            JSONObject temp = list.getJSONObject(i);
+                                            List<Classroom> classrooms = LitePal.where("code = ? ",temp.getString("code")).find(Classroom.class);
+                                            if (classrooms == null || classrooms.size() == 0){
+                                            }else {
+                                                for (int j = 0; j < classrooms.size(); j++) {
+                                                    classrooms.get(j).delete();
+                                                }
+                                            }
+                                            Classroom classroom = new Classroom();
+                                            classroom.setCourseNo(temp.getInt("course_no"));
+                                            classroom.setCourseName(temp.getString("course_name"));
+                                            classroom.setTeachTime(Integer.valueOf(temp.getString("teach_time")));
+                                            classroom.setTeachLocation(Integer.valueOf(temp.getString("teach_location")));
+                                            classroom.setTeacherNo(temp.getString("teacher_no"));
+                                            classroom.setCode(temp.getString("code"));
+                                            classroom.save();
+                                        }
 
                                     }
                                 }catch (Exception e1){
