@@ -21,4 +21,6 @@ class MyStaticValue {
     static final String GET_TEST = "http://122.51.186.91:8081/course/getTestInfo";
     static final String GET_CALL_INFO = "http://122.51.186.91:8081/course/getCallInfo";
     static final String JOIN_CALL = "http://122.51.186.91:8081/course/joinCall";
+    static final String NEW_DISCUSS = "http://122.51.186.91:8081/discuss/new";
+    static final String GET_DISCUSS = "http://122.51.186.91:8081/discuss/getDiscuss";
 }

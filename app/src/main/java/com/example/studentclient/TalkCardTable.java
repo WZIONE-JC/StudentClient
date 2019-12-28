@@ -3,12 +3,29 @@ package com.example.studentclient;
 import org.litepal.crud.LitePalSupport;
 
 public class TalkCardTable extends LitePalSupport {
+    private String discussNo;
     private String writer;
     private String reviews;
     private String title;
     private String type;
     private String textContent;
     private String timeStamp;
+
+    public String getDiscussNo() {
+        return discussNo;
+    }
+
+    public void setDiscussNo(String discussNo) {
+        this.discussNo = discussNo;
+    }
+
+    public String getTextContent() {
+        return textContent;
+    }
+
+    public void setTextContent(String textContent) {
+        this.textContent = textContent;
+    }
 
     public String getTimeStamp() {
         return timeStamp;
