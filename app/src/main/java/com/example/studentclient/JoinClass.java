@@ -84,6 +84,7 @@ public class JoinClass extends Activity {
                                     public void onClick(DialogInterface dialog, int which) {
                                         getClassInfo();
                                         dialog.dismiss();
+                                        finish();
                                     }
                                 }).create();
                         dialog.show();

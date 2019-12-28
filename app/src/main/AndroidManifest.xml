@@ -4,11 +4,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <uses-feature android:required="false"
-        android:name="android.hardware.camera"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <application
         android:name="org.litepal.LitePalApplication"
@@ -19,19 +20,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".CourseTest"></activity>
 
         <provider
-            android:authorities="com.example.studentclient.fileprovider"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.studentclient.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths">
-            </meta-data>
+                android:resource="@xml/file_paths"></meta-data>
         </provider>
 
-        <activity android:name=".WriteNewCard"></activity>
+        <activity android:name=".WriteNewCard" />
         <activity android:name=".AddCourse" />
         <activity android:name=".CourseTable" />
         <activity android:name=".CourseMain" />
@@ -61,12 +62,12 @@
         <activity
             android:name=".SelectPicture"
             android:theme="@style/DialogStyleBottom" />
-        <activity android:name=".MyHomework"/>
-        <activity android:name=".HomeworkDetail"/>
+        <activity android:name=".MyHomework" />
+        <activity android:name=".HomeworkDetail" />
         <activity
             android:name=".Courseware"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".ShowMoreInfo"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ShowMoreInfo" />
         <activity android:name=".MoreInfo" />
     </application>
 

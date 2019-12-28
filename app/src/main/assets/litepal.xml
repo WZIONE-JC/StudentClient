@@ -35,6 +35,11 @@
         <mapping class = "com.example.studentclient.Course"/>
         <mapping class = "com.example.studentclient.TalkCardTable"/>
         <mapping class = "com.example.studentclient.Classroom"/>
+        <mapping class = "com.example.studentclient.Announce"/>
+        <mapping class = "com.example.studentclient.CourseFile"/>
+        <mapping class = "com.example.studentclient.HomeWork"/>
+        <mapping class = "com.example.studentclient.TestTable"/>
+        <mapping class = "com.example.studentclient.CallTable"/>
     </list>
 
     <!--
