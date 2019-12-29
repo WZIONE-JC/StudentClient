@@ -24,7 +24,6 @@ import org.litepal.LitePal;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -326,14 +325,14 @@ public class CourseMain extends AppCompatActivity {
                                         JSONArray list = object.getJSONArray("homeworkList");
                                         for (int i = 0; i < list.length(); i++) {
                                             JSONObject temp = list.getJSONObject(i);
-                                            List<HomeWork> homeWorks = LitePal.where("homeworkNo = ? ",String.valueOf(temp.getInt("homework_no"))).find(HomeWork.class);
+                                            List<Homework> homeWorks = LitePal.where("homeworkNo = ? ",String.valueOf(temp.getInt("homework_no"))).find(Homework.class);
                                             if (homeWorks == null || homeWorks.size() == 0){
                                             }else {
                                                 for (int j = 0; j < homeWorks.size(); j++) {
                                                     homeWorks.get(j).delete();
                                                 }
                                             }
-                                            HomeWork homeWork = new HomeWork();
+                                            Homework homeWork = new Homework();
                                             homeWork.setCourseNo(temp.getString("course_no"));
                                             homeWork.setHomeworkNo(temp.getInt("homework_no"));
                                             homeWork.setTitle(temp.getString("title"));

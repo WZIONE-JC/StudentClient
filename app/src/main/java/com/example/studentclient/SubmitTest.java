@@ -38,14 +38,14 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class HomeworkDetail extends AppCompatActivity implements View.OnClickListener{
-    private TextView text_hw_title;
-    private TextView text_hw_detail;
-    private TextView text_hw_duetime;
+public class SubmitTest extends AppCompatActivity implements View.OnClickListener{
+    private TextView text_test_title;
+    private TextView text_test_detail;
+    private TextView text_test_duetime;
     private Button btn_upload;
     private Button btn_submit;
     private ImageView img_back;
-    private int homeworNo;
+    private int testNo;
     private Handler handler;
     private Uri fileUri;
     private String path;
@@ -56,7 +56,7 @@ public class HomeworkDetail extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_homework_detail);
+        setContentView(R.layout.activity_submit_test);
         initview();
 
         handler = new Handler(){
@@ -69,7 +69,7 @@ public class HomeworkDetail extends AppCompatActivity implements View.OnClickLis
                         fileName.setText(file.getName());
                         break;
                     case 1:
-                        Toast.makeText(HomeworkDetail.this,"提交成功",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SubmitTest.this,"提交成功",Toast.LENGTH_SHORT).show();
                         break;
 
                 }
@@ -78,23 +78,23 @@ public class HomeworkDetail extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initview() {
-        btn_upload=findViewById(R.id.upload_file);
-        btn_submit=findViewById(R.id.submit_answer);
-        text_hw_title=(TextView)findViewById(R.id.my_hw_title);
-        text_hw_detail=(TextView)findViewById(R.id.my_hw_detail);
-        text_hw_duetime=(TextView)findViewById(R.id.my_hw_deadtime);
+        btn_upload=findViewById(R.id.upload_file_test);
+        btn_submit=findViewById(R.id.submit_answer_test);
+        text_test_title =(TextView)findViewById(R.id.my_test_title);
+        text_test_detail =(TextView)findViewById(R.id.my_test_detail);
+        text_test_duetime =(TextView)findViewById(R.id.my_test_deadtime);
         img_back=findViewById(R.id.back);
 
         btn_upload.setOnClickListener(this);
         btn_submit.setOnClickListener(this);
         img_back.setOnClickListener(this);
-        homeworNo = getIntent().getIntExtra("homeworkNo",-1);
-        List<Homework> homeWork = LitePal.where("homeworkNo = ? ", String.valueOf(homeworNo)).find(Homework.class);
-        text_hw_title.setText(homeWork.get(0).getTitle());
-        text_hw_duetime.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(homeWork.get(0).getDeadline()));
-        text_hw_detail.setText(homeWork.get(0).getContent());
-        courseNo = homeWork.get(0).getCourseNo();
-        fileName = (TextView)findViewById(R.id.my_hw_answer);
+        testNo = getIntent().getIntExtra("testNo",-1);
+        List<TestTable> tests = LitePal.where("testNo = ? ", String.valueOf(testNo)).find(TestTable.class);
+        text_test_title.setText(tests.get(0).getTitle());
+        text_test_duetime.setText(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(tests.get(0).getDeadline()));
+        text_test_detail.setText(tests.get(0).getContent());
+        courseNo = tests.get(0).getCourseNo();
+        fileName = (TextView)findViewById(R.id.my_test_answer);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
     }
 
@@ -104,10 +104,10 @@ public class HomeworkDetail extends AppCompatActivity implements View.OnClickLis
             case R.id.back:
                 this.finish();
                 break;
-            case R.id.upload_file://上传
+            case R.id.upload_file_test://上传
                 chooseFile();
                 break;
-            case R.id.submit_answer://提交
+            case R.id.submit_answer_test://提交
                 uploadFile();
                 finish();
                 break;
@@ -145,14 +145,14 @@ public class HomeworkDetail extends AppCompatActivity implements View.OnClickLis
                             .setType(MultipartBody.FORM)
 //                            .addFormDataPart("user_no",preferences.getString("id",""))
                             .addFormDataPart("course_no",courseNo)
-                            .addFormDataPart("homework_no",String.valueOf(homeworNo))
+                            .addFormDataPart("test_no",String.valueOf(testNo))
                             .addFormDataPart("student_no",preferences.getString("id",""))
                             .addFormDataPart("token",preferences.getString("token",""))
                             .addFormDataPart("content",file.getName(),fileBody)
                             .build();
 
                     Request request = new Request.Builder()
-                            .url(new URL(MyStaticValue.UPLOAD_HOMEWORK))
+                            .url(new URL(MyStaticValue.UPLOAD_TEST))
                             .post(requestBody)
                             .build();
 

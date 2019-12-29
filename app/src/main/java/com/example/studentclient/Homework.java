@@ -2,7 +2,7 @@ package com.example.studentclient;
 
 import org.litepal.crud.LitePalSupport;
 
-public class HomeWork extends LitePalSupport {
+public class Homework extends LitePalSupport {
     private int homeworkNo;
     private String courseNo;
     private String title;

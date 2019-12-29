@@ -108,8 +108,9 @@ public class WriteNewCard extends AppCompatActivity {
                     RequestBody body = new FormBody.Builder()
                             .add("user_no",preferences.getString("id",""))
                             .add("token",preferences.getString("token",""))
-                            .add("course_no","")
+                            .add("course_name",type.getText().toString())
                             .add("title",title.getText().toString())
+                            .add("content",text.getText().toString())
                             .add("discuss_start_time",String.valueOf(System.currentTimeMillis()))
                             .build();
 

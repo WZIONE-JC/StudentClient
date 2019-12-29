@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +52,6 @@ public class TalkFragment extends Fragment {
     }
 
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -60,4 +60,6 @@ public class TalkFragment extends Fragment {
         TalkAdapter adapter = new TalkAdapter(cardTables);
         talkArea.setAdapter(adapter);
     }
+
+
 }

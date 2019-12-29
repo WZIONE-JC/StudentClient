@@ -58,6 +58,9 @@ public class CourseTest extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //回答测试
+                Intent intent = new Intent(CourseTest.this, SubmitTest.class);
+                intent.putExtra("testNo",tests.get(position).getTestNo());
+                startActivity(intent);
             }
         });
 

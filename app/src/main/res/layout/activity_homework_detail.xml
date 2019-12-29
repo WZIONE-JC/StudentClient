@@ -48,7 +48,7 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="20sp" />
             <TextView
-                android:id="@+id/hw_title"
+                android:id="@+id/my_hw_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
@@ -74,7 +74,7 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="20sp" />
             <TextView
-                android:id="@+id/hw_duetime"
+                android:id="@+id/my_hw_deadtime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="xxxxx"
@@ -86,27 +86,7 @@
             style="@style/user_line"
             android:layout_height="1dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:text="评分方式:"
-                android:textColor="@color/colorAccent"
-                android:textSize="20sp" />
-            <TextView
-                android:id="@+id/hw_grade"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:text="xxxxx"
-                android:textColor="@color/deep_gray"
-                android:textSize="18sp" />
-        </LinearLayout>
+
 
         <View
             style="@style/user_line"
@@ -121,7 +101,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/hw_detail"
+            android:id="@+id/my_hw_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -142,35 +122,34 @@
             android:textColor="@color/colorAccent"
             android:textSize="20sp" />
 
-        <EditText
-            android:text=""
-            android:textColor="@color/deep_gray"
-            android:id="@+id/hw_answer"
+        <TextView
+            android:textColor="@color/color_1296db"
+            android:id="@+id/my_hw_answer"
             android:lines="6"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:gravity="top"
-            android:hint=" 请输入你的回答"
+            android:hint="文件"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@color/user_item_back"
-            ></EditText>
+            ></TextView>
 
         <Button
-            android:id="@+id/upload"
+            android:id="@+id/upload_file"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="15dp"
-            android:text="上传文件"
+            android:text="选择文件"
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:background="@drawable/button"/>
 
         <Button
-            android:id="@+id/submit"
+            android:id="@+id/submit_answer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"

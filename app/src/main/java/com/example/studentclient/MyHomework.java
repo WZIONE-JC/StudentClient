@@ -1,7 +1,5 @@
 package com.example.studentclient;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,7 +7,6 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -38,7 +35,7 @@ public class MyHomework extends AppCompatActivity {
         courseNo = getIntent().getIntExtra("courseNo",-1);
         list_homework = (ListView) findViewById(R.id.my_homework);
 
-        final List<HomeWork> homeWorks = LitePal.where("courseNo = ?", String.valueOf(getIntent().getIntExtra("courseNo",-1))).find(HomeWork.class);
+        final List<Homework> homeWorks = LitePal.where("courseNo = ?", String.valueOf(getIntent().getIntExtra("courseNo",-1))).find(Homework.class);
         List<Map<String,Object>> listItems = new ArrayList<Map<String,Object>>();
         for(int i=0;i<homeWorks.size();i++){
             Date date = new Date(homeWorks.get(i).getDeadline());
@@ -58,7 +55,7 @@ public class MyHomework extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MyHomework.this, HomeworkDetail.class);
-                intent.putExtra("courseNo",courseNo);
+                intent.putExtra("homeworkNo",homeWorks.get(position).getHomeworkNo());
                 startActivity(intent);
             }
         });
