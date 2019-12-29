@@ -59,6 +59,16 @@ public class TalkAdapter extends RecyclerView.Adapter<TalkAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.talk_area_item,parent,false);
         final ViewHolder holder = new ViewHolder(view);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                TalkCardTable talkCardItem = cardTableLists.get(position);
+                Intent intent = new Intent(v.getContext(),DiscussItem.class);
+                intent.putExtra("discussNo",talkCardItem.getDiscussNo());
+                v.getContext().startActivity(intent);
+            }
+        });
         return  holder;
     }
 
