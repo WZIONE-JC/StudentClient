@@ -314,8 +314,10 @@ public class MainActivity extends AppCompatActivity {
                                             }
                                             TalkCardTable table = new TalkCardTable();
                                             table.setDiscussNo(String.valueOf(temp.getInt("discuss_no")));
+                                            table.setType(temp.getString("course_name"));
                                             table.setTitle(temp.getString("discuss_title"));
                                             table.setWriter(temp.getString("post_no"));
+                                            table.setTextContent(temp.getString("content"));
                                             table.setTimeStamp(String.valueOf(temp.getLong("discuss_start_time")));
                                             table.save();
                                         }

@@ -40,6 +40,7 @@
         <mapping class = "com.example.studentclient.Homework"/>
         <mapping class = "com.example.studentclient.TestTable"/>
         <mapping class = "com.example.studentclient.CallTable"/>
+        <mapping class = "com.example.studentclient.Comment"/>
     </list>
 
     <!--

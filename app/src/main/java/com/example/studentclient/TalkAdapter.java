@@ -1,9 +1,11 @@
 package com.example.studentclient;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +24,7 @@ public class TalkAdapter extends RecyclerView.Adapter<TalkAdapter.ViewHolder> {
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder{
+        View itemView;
         ImageView avatar;
         TextView name;
         TextView title;
@@ -31,10 +34,12 @@ public class TalkAdapter extends RecyclerView.Adapter<TalkAdapter.ViewHolder> {
         ImageView pic3;
         TextView reviews;
         TextView type;
+        LinearLayout discuss;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.itemView = itemView;
             avatar = (ImageView)itemView.findViewById(R.id.avatar);
             name = (TextView)itemView.findViewById(R.id.talk_card_name);
             title = (TextView)itemView.findViewById(R.id.talk_card_title);
@@ -44,19 +49,23 @@ public class TalkAdapter extends RecyclerView.Adapter<TalkAdapter.ViewHolder> {
             pic3 = (ImageView)itemView.findViewById(R.id.talk_card_pci_3);
             reviews = (TextView)itemView.findViewById(R.id.text_reviews);
             type = (TextView)itemView.findViewById(R.id.text_card_type);
+            discuss = (LinearLayout)itemView.findViewById(R.id.discuss_item);
         }
+
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.talk_area_item,parent,false);
-        ViewHolder holder = new ViewHolder(view);
+        final ViewHolder holder = new ViewHolder(view);
         return  holder;
     }
 
+
+
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         TalkCardTable talkCardItem = cardTableLists.get(position);
         holder.name.setText(talkCardItem.getWriter());
         holder.title.setText(talkCardItem.getTitle());

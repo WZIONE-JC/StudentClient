@@ -71,7 +71,4 @@ public class TalkCardTable extends LitePalSupport {
         this.type = type;
     }
 
-    public void setContent(String content) {
-        this.textContent = content;
-    }
 }
