@@ -145,61 +145,48 @@ public class Courseware extends Activity {
             }
         };
         listv.setAdapter(simleAdapter);
-//        listv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                try {
-//                    Intent intent = new Intent();
-//                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    intent.setAction(Intent.ACTION_VIEW);
-//                    File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/yiclass");//存储文件夹
-//                    if (!file.exists()) {
-//                        file.mkdirs();
-//                    }
-//                    File file1 = new File(file, courseFiles.get(position).getFileName());
-//                    if (!file1.exists()){
-//                        Toast.makeText(Courseware.this, "文件不存在，请先下载文件！",Toast.LENGTH_SHORT).show();
-//                        return;
-//                    }
-//                    String type = getMIMEType(file1);
-//                    Log.d("type++++++",type);
-//                    Uri uri;
-//                    if(Build.VERSION.SDK_INT >= 24) {
-//                        uri = FileProvider.getUriForFile(Courseware.this, "com.example.studentclient.fileprovider", file1);
-//                    } else {
-//                        uri = Uri.fromFile(file1); // Android 7.0 以前使用原来的方法来获取文件的 Uri
-//                    }
-//                    intent.addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION/Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                    intent.setDataAndType(uri, type);
-//                    startActivity(intent);
-//                }catch (Exception e){
-//                    e.printStackTrace();
-//                    Toast.makeText(Courseware.this, "sorry附件不能打开，请下载相关软件！",Toast.LENGTH_SHORT).show();
-//
-//                }
-//            }
-//        });
+        listv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    Intent intent = new Intent();
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setAction(Intent.ACTION_VIEW);
+                    File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/yiclass");//存储文件夹
+                    if (!file.exists()) {
+                        file.mkdirs();
+                    }
+                    File file1 = new File(file, courseFiles.get(position).getFileName());
+                    if (!file1.exists()){
+                        Toast.makeText(Courseware.this, "文件不存在，请先下载文件！",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    String type = "";
+                    for(int i =0;i<MIME_MapTable.length;i++) {
+                        //判断文件的格式
+                        if (file1.getPath().toString().contains(MIME_MapTable[i][0].toString())) {
+                            type = MIME_MapTable[i][1];
+                            break;
+                        }
+                    }
+                    Log.d("type++++++",type);
+                    Uri uri;
+                    if(Build.VERSION.SDK_INT >= 24) {
+                        uri = FileProvider.getUriForFile(Courseware.this, "com.example.studentclient.fileprovider", file1);
+                    } else {
+                        uri = Uri.fromFile(file1); // Android 7.0 以前使用原来的方法来获取文件的 Uri
+                    }
+                    intent.setDataAndType(uri, type);
+                    startActivity(intent);
+                }catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(Courseware.this, "sorry附件不能打开，请下载相关软件！",Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        });
     }
 
-    private String getMIMEType(File file) {
-
-        String type="*/*";
-        String fName = file.getName();
-        //获取后缀名前的分隔符"."在fName中的位置。
-        int dotIndex = fName.lastIndexOf(".");
-        if(dotIndex < 0){
-            return type;
-        }
-        /* 获取文件的后缀名*/
-        String end=fName.substring(dotIndex,fName.length()).toLowerCase();
-        if(end=="")return type;
-        //在MIME和文件类型的匹配表中找到对应的MIME类型。
-        for(int i=0;i<MIME_MapTable.length;i++){
-            if(end.equals(MIME_MapTable[i][0]))
-                type = MIME_MapTable[i][1];
-        }
-        return type;
-    }
     private String [][]  MIME_MapTable={
             {".3gp",    "video/3gpp"},
             {".apk",    "application/vnd.android.package-archive"},

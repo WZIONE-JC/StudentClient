@@ -237,6 +237,7 @@ public class PersonalFragment extends Fragment implements View.OnClickListener{
                                 handler.sendEmptyMessage(0);
 
                             } else {
+                                Log.d("error", response.body().string());
                                 handler.sendEmptyMessage(1);
                             }
                         }
